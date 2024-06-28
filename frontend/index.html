@@ -32,6 +32,8 @@
                 success: function(response) {
                     alert('Signature: ' + response.signature);
                     console.log(response.signature)
+                    downloadFile(response.signature)
+                    
                 }
             });
         });
@@ -50,6 +52,15 @@
                 }
             });
         });
+        function downloadFile(content){
+        const link = document.createElement("a");
+        const file = new Blob([content], { type: 'text/plain' });
+        link.href = URL.createObjectURL(file);
+        link.download = "sign.txt";
+        link.click();
+        URL.revokeObjectURL(link.href);
+        }
+
     </script>
 </body>
 </html>
